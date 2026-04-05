@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - CrimePredict AI</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<style>
+  body {
+    background: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=1920&q=80') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .overlay {
+    background: rgba(0,0,0,0.7);
+    padding: 50px;
+    min-height: 100vh;
+  }
+  form {
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  input, textarea, button {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+  }
+  button {
+    background: #1e90ff;
+    color: #fff;
+    cursor: pointer;
+  }
+  button:hover { background: #0b74d1; }
+</style>
+</head>
+<body>
+  <div class="overlay">
+    <h1 style="text-align:center;">Contact Us</h1>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p style="text-align:center; margin-top:20px;">📍 123 AI Street, Tech City | ☎ +1-234-567-8900</p>
+  </div>
+
+<script>
+  // JavaScript to handle form submission
+  document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+    alert('Your message has been submitted successfully! ✅'); // Show popup
+    this.reset(); // Clear form fields
+  });
+</script>
+</body>
+</html>
+

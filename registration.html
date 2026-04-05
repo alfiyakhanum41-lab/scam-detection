@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Registration | CrimePredict AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --accent: #1e90ff;
+    --accent-2: #00b0ff;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('https://images.unsplash.com/photo-1505238680356-667803448bb6?auto=format&fit=crop&w=2000&q=60') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 0;
+  }
+  header {
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 40px;
+    position: relative;
+    z-index: 2;
+  }
+  header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+  }
+
+  /* Profile icon */
+  .profile-icon {
+    font-size: 26px;
+    color: #fff;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .profile-icon:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.1);
+  }
+
+  /* User details popup (Chrome style) */
+  .user-details {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #fff;
+    color: #000;
+    border-radius: 12px;
+    width: 220px;
+    padding: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.3);
+    display: none;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    z-index: 999;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .user-details img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 2px solid var(--accent);
+    cursor: pointer;
+  }
+  .user-details h3 {
+    font-size: 16px;
+    margin: 6px 0 2px;
+  }
+  .user-details p {
+    font-size: 13px;
+    color: #555;
+    margin: 0 0 12px;
+  }
+  .user-details button {
+    margin-top: 10px;
+    padding: 6px 12px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .user-details button:hover {
+    opacity: 0.9;
+  }
+
+  main {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: 20px;
+  }
+
+  .register-card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 40px;
+    max-width: 420px;
+    width: 100%;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+  .register-card h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  label {
+    font-size: 13px;
+    color: #dff4ff;
+    margin-bottom: 6px;
+    display: block;
+  }
+  input, select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    margin-bottom: 14px;
+  }
+  button.register-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  button.register-btn:hover {
+    opacity: 0.9;
+  }
+  .login-link {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 14px;
+    color: #cfefff;
+  }
+  .login-link a {
+    color: #00b0ff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  footer {
+    background: rgba(0,0,0,0.6);
+    text-align: center;
+    padding: 14px;
+    color: #dff4ff;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Registration Page</h1>
+
+  <!-- Profile Icon -->
+  <div class="profile-icon" id="profileIcon" title="User Profile">
+    <i class="fa-solid fa-user"></i>
+  </div>
+
+  <!-- User details popup -->
+  <div id="userDetails" class="user-details">
+    <img id="profilePhoto" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User Photo" title="Click to change photo">
+    <input type="file" id="photoInput" accept="image/*" style="display:none;">
+    <h3 id="userName">John Doe</h3>
+    <p id="userEmail">john.doe@example.com</p>
+    <button onclick="closeUserDetails()">Close</button>
+  </div>
+</header>
+
+<main>
+  <div class="register-card">
+    <h2>Create Your Account</h2>
+    <form id="registerForm" onsubmit="return false;">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+      <label for="role">Select Role</label>
+      <select id="role" name="role">
+        <option value="user">User</option>
+        <option value="admin">officer</option>
+        <option value="analyst">Analyst</option>
+      </select>
+
+      <button type="button" class="register-btn" onclick="registerUser()">Register</button>
+    </form>
+
+    <div class="login-link">
+      
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 2025 CrimePredict AI | Designed for Safer Cities
+</footer>
+
+<script>
+const profileIcon = document.getElementById("profileIcon");
+const userDetails = document.getElementById("userDetails");
+const profilePhoto = document.getElementById("profilePhoto");
+const photoInput = document.getElementById("photoInput");
+
+let userPhotoURL = profilePhoto.src;
+
+// Toggle popup
+profileIcon.addEventListener("click", () => {
+  userDetails.style.display =
+    userDetails.style.display === "block" ? "none" : "block";
+});
+
+// Close popup when clicking outside
+document.addEventListener("click", (e) => {
+  if (!profileIcon.contains(e.target) && !userDetails.contains(e.target)) {
+    userDetails.style.display = "none";
+  }
+});
+
+// Change profile photo
+profilePhoto.addEventListener("click", () => {
+  photoInput.click();
+});
+
+photoInput.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      userPhotoURL = event.target.result;
+      profilePhoto.src = userPhotoURL;
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+// Update user details after registration
+function registerUser() {
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value.trim();
+
+  if (!name || !email || !password) {
+    alert("⚠️ Please fill in all required fields.");
+    return;
+  }
+
+  document.getElementById("userName").textContent = name;
+  document.getElementById("userEmail").textContent = email;
+  profilePhoto.src = userPhotoURL;
+
+  alert("🎉 Registration successful!");
+  // Redirect to the project's actual homepage path
+  setTimeout(() => window.location.href = "/home/", 1500);
+}
+
+function closeUserDetails() {
+  userDetails.style.display = "none";
+}
+</script>
+
+</body>
+</html>
+  

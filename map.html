@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crime Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body style="background-image:url('https://images.unsplash.com/photo-1517816743773-6e0fd518b4a6'); background-size:cover;">
+  <header>
+    
+      
+    
+  </header>
+
+  <main style="padding:20px; background:rgba(0,0,0,0.5);">
+    <h2 style="text-align:center;">Interactive Crime Hotspot Map</h2>
+    <div style="margin:20px auto; max-width:600px; text-align:center;">
+      <label>Filter by Crime Type:</label>
+      <select id="crimeFilter">
+        <option>All</option>
+        <option>Robbery</option>
+        <option>Assault</option>
+        <option>Burglary</option>
+      </select>
+    </div>
+
+    <div id="crimeMap" style="height:500px; border-radius:8px;"></div>
+  </main>
+
+  <footer>
+    <p>© 2025 AI Crime Prediction | <a href="/terms">Terms</a> | <a href="/privacy">Privacy</a></p>
+  </footer>
+
+  <script>
+    // Initialize map
+    var map = L.map('crimeMap').setView([37.7749, -122.4194], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Crime data: lat, lng, type, description
+    var crimes = [
+      {lat: 37.7749, lng: -122.4194, type: 'Robbery', desc: 'High Crime Zone: Robbery Hotspot'},
+      {lat: 37.7849, lng: -122.4094, type: 'Assault', desc: 'Reported Assault Area'},
+      {lat: 37.7649, lng: -122.4294, type: 'Burglary', desc: 'Frequent Burglaries'},
+      {lat: 37.7549, lng: -122.4394, type: 'Robbery', desc: 'Robbery Incident'},
+      {lat: 37.7949, lng: -122.3994, type: 'Assault', desc: 'Assault Hotspot'},
+      {lat: 37.7840, lng: -122.4310, type: 'Burglary', desc: 'Burglary Reported'},
+    ];
+
+    // Store markers for filtering
+    var markers = [];
+    crimes.forEach(function(crime) {
+      var marker = L.marker([crime.lat, crime.lng]).addTo(map)
+        .bindPopup(crime.desc);
+      marker.crimeType = crime.type;
+      markers.push(marker);
+    });
+
+    // Helper: bounce animation using setInterval
+    function bounceMarker(marker, times = 3, height = 20, speed = 80) {
+      var count = 0;
+      var original = marker.getLatLng();
+      var bounce = setInterval(function() {
+        var offset = (count % 2 === 0) ? height : -height;
+        marker.setLatLng([original.lat + offset * 0.0001, original.lng]);
+        count++;
+        if (count > times * 2) {
+          clearInterval(bounce);
+          marker.setLatLng(original);
+        }
+      }, speed);
+    }
+
+    // Filtering logic
+    document.getElementById('crimeFilter').addEventListener('change', function() {
+      var selected = this.value;
+      markers.forEach(function(marker) {
+        if (selected === 'All' || marker.crimeType === selected) {
+          marker.addTo(map);
+          marker.setOpacity(1);
+          if (selected !== 'All') {
+            marker.openPopup();
+            bounceMarker(marker);
+          } else {
+            marker.closePopup();
+          }
+        } else {
+          marker.remove();
+          marker.closePopup();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

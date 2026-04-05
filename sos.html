@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOS & Emergency Numbers | CrimePredict AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #1e90ff;
+    --accent-2: #00b0ff;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('https://images.unsplash.com/photo-1505238680356-667803448bb6?auto=format&fit=crop&w=2000&q=60') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    scroll-behavior: smooth;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: 0;
+  }
+
+  header {
+    background: rgba(0,0,0,0.55);
+    text-align: center;
+    padding: 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    margin: 0;
+    color: #fff;
+  }
+
+  nav a {
+    color: #eaf6ff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 600;
+  }
+
+  nav a:hover {
+    color: #fff;
+  }
+
+  main {
+    position: relative;
+    z-index: 2;
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  p.intro {
+    text-align: center;
+    color: #dff4ff;
+    max-width: 700px;
+    margin: 0 auto 30px;
+  }
+
+  .search-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
+  .search-box input {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+  }
+
+  .search-box input::placeholder {
+    color: #bfe8ff;
+  }
+
+  .sos-list {
+    background: rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 20px 30px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+  }
+
+  .sos-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .sos-item:last-child {
+    border-bottom: none;
+  }
+
+  .sos-item h3 {
+    font-family: 'Poppins', sans-serif;
+    color: var(--accent-2);
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .sos-item p {
+    margin: 4px 0 0;
+    color: #e8f4ff;
+    font-size: 14px;
+  }
+
+  .call-btn {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .call-btn:hover {
+    background: linear-gradient(90deg, #00c0ff, #007aff);
+  }
+
+  /* Floating SOS button */
+  .sos-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: radial-gradient(circle at top left, #ff0000, #cc0000);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    font-size: 22px;
+    font-weight: 700;
+    box-shadow: 0 0 20px rgba(255,0,0,0.6);
+    cursor: pointer;
+    z-index: 10;
+    transition: transform 0.3s;
+  }
+
+  .sos-float:hover {
+    transform: scale(1.1);
+  }
+
+  footer {
+    background: rgba(0,0,0,0.6);
+    text-align: center;
+    padding: 16px;
+    color: #dff4ff;
+    margin-top: 50px;
+  }
+
+  /* fade animation */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-in-out;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+</style>
+</head>
+<body>
+
+
+  
+</header>
+
+<main>
+  <h2>🚨 Emergency & SOS Numbers</h2>
+  <p class="intro">
+    In case of any emergency, you can contact the following helplines instantly.  
+    Use the search box below to quickly find relevant numbers.
+  </p>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search (e.g., Police, Fire, Women...)">
+  </div>
+
+  <div class="sos-list" id="sosList">
+    <!-- Emergency Numbers -->
+    <div class="sos-item fade-in">
+      <div>
+        <h3>💻 Cyber Crime Helpline</h3>
+        <p>Report online fraud, harassment, or hacking attempts.</p>
+      </div>
+      <div>
+        <a href="tel:1930"><button class="call-btn">Call 1930</button></a>
+        <button class="call-btn copy-btn" data-number="1930">Copy</button>
+      </div>
+    </div>
+    <div class="sos-item fade-in">
+      <div>
+        <h3>🚓 Police Helpline</h3>
+        <p>For immediate police assistance in emergencies.</p>
+      </div>
+      <div>
+        <a href="tel:100"><button class="call-btn">Call 100</button></a>
+        <button class="call-btn copy-btn" data-number="100">Copy</button>
+      </div>
+    </div>
+    <div class="sos-item fade-in">
+      <div>
+        <h3>🚒 Fire Department</h3>
+        <p>For reporting fires and rescue operations.</p>
+      </div>
+      <div>
+        <a href="tel:101"><button class="call-btn">Call 101</button></a>
+        <button class="call-btn copy-btn" data-number="101">Copy</button>
+      </div>
+    </div>
+    <div class="sos-item fade-in">
+      <div>
+        <h3>🚑 Ambulance</h3>
+        <p>For medical emergencies and accidents.</p>
+      </div>
+      <div>
+        <a href="tel:102"><button class="call-btn">Call 102</button></a>
+        <button class="call-btn copy-btn" data-number="102">Copy</button>
+      </div>
+    </div>
+    <div class="sos-item fade-in">
+      <div>
+        <h3>👩‍🦰 Women Helpline</h3>
+        <p>Dedicated helpline for women safety and support.</p>
+      </div>
+      <div>
+        <a href="tel:1091"><button class="call-btn">Call 1091</button></a>
+        <button class="call-btn copy-btn" data-number="1091">Copy</button>
+      </div>
+    </div>
+    <div class="sos-item fade-in">
+      <div>
+        <h3>🧒 Child Helpline</h3>
+        <p>For reporting crimes or concerns involving minors.</p>
+      </div>
+      <div>
+        <a href="tel:1098"><button class="call-btn">Call 1098</button></a>
+        <button class="call-btn copy-btn" data-number="1098">Copy</button>
+      </div>
+    </div>
+    <div class="sos-item fade-in">
+      <div>
+        <h3>🚨 National Emergency Number</h3>
+        <p>Unified number for all types of emergencies in India.</p>
+      </div>
+      <div>
+        <a href="tel:112"><button class="call-btn">Call 112</button></a>
+        <button class="call-btn copy-btn" data-number="112">Copy</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Floating SOS Button -->
+<button class="sos-float" onclick="highlightSOS()">SOS</button>
+
+<!-- SOS Modal Popup -->
+<div id="sosModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);z-index:100;align-items:center;justify-content:center;">
+  <div style="background:#fff;color:#222;padding:32px 24px;border-radius:16px;max-width:340px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.4);position:relative;">
+    <h2 style="color:#e53935;margin-bottom:12px;">🚨 SOS Emergency</h2>
+    <p style="margin-bottom:18px;">Stay calm. Call the relevant emergency number below for immediate help.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+      <button onclick="window.location.href='tel:112'" style="background:#e53935;color:#fff;padding:10px 0;border:none;border-radius:8px;font-weight:700;font-size:18px;">Call 112</button>
+      <button onclick="window.location.href='tel:100'" style="background:#1e90ff;color:#fff;padding:10px 0;border:none;border-radius:8px;font-weight:700;font-size:18px;">Call 100</button>
+      <button onclick="window.location.href='tel:1091'" style="background:#00b0ff;color:#fff;padding:10px 0;border:none;border-radius:8px;font-weight:700;font-size:18px;">Call 1091</button>
+    </div>
+    <button onclick="closeSOSModal()" style="background:#eee;color:#222;padding:8px 18px;border:none;border-radius:8px;font-weight:600;">Close</button>
+  </div>
+</div>
+
+<footer>
+  © 2025 CrimePredict AI | Stay Alert. Stay Safe.
+</footer>
+
+<script>
+    // Copy to clipboard for numbers
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const number = this.getAttribute('data-number');
+        navigator.clipboard.writeText(number);
+        this.textContent = 'Copied!';
+        setTimeout(() => { this.textContent = 'Copy'; }, 1200);
+      });
+    });
+
+    // SOS Modal logic
+    function highlightSOS() {
+      document.getElementById('sosModal').style.display = 'flex';
+      // Animate the SOS button
+      const btn = document.querySelector('.sos-float');
+      btn.animate([
+        { transform: 'scale(1)' },
+        { transform: 'scale(1.2)' },
+        { transform: 'scale(1)' }
+      ], { duration: 500 });
+    }
+    function closeSOSModal() {
+      document.getElementById('sosModal').style.display = 'none';
+    }
+  // Search filter function
+  const searchInput = document.getElementById('searchInput');
+  const sosList = document.getElementById('sosList');
+  searchInput.addEventListener('keyup', () => {
+    const filter = searchInput.value.toLowerCase();
+    const items = sosList.getElementsByClassName('sos-item');
+    for (let i = 0; i < items.length; i++) {
+      const h3 = items[i].getElementsByTagName('h3')[0];
+      const textValue = h3.textContent || h3.innerText;
+      items[i].style.display = textValue.toLowerCase().includes(filter) ? '' : 'none';
+    }
+  });
+
+  // Fade-in on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  function fadeInOnScroll() {
+    fadeEls.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) el.classList.add('visible');
+    });
+  }
+  window.addEventListener('scroll', fadeInOnScroll);
+  window.addEventListener('load', fadeInOnScroll);
+
+  // SOS Floating Button Functionality
+
+</script>
+
+</body>
+</html>

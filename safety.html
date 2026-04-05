@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safety Measures | Crime Prediction</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+/* ========== GLOBAL ========== */
+body{
+    margin:0;
+    font-family: "Inter", sans-serif;
+    background:#0a0f1d;
+    color:#e8f5ff;
+}
+header{
+    background:#0f1629;
+    padding:18px;
+    text-align:center;
+    border-bottom:2px solid #0d6efd;
+}
+header h1{
+    margin:0;
+    font-size:28px;
+    color:#4db8ff;
+    font-family:"Poppins";
+    letter-spacing:1px;
+}
+
+/* ========== SECTION TITLE ========== */
+section{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+}
+.section-title{
+    text-align:center;
+    font-size:35px;
+    margin-bottom:10px;
+    font-family:"Poppins";
+}
+.section-sub{
+    text-align:center;
+    max-width:760px;
+    margin:auto;
+    color:#b5daff;
+    font-size:15px;
+}
+
+/* ========== SAFETY GRID ========== */
+.grid{
+    margin-top:45px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+/* ========== SAFETY CARD ========== */
+.card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(0,110,255,0.35);
+    border-radius:14px;
+    padding:22px;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    transition:0.3s;
+}
+.card:hover{
+    border-color:#4ecbff;
+    box-shadow:0 0 18px rgba(0,180,255,0.35);
+}
+.card h3{
+    margin-top:0;
+    margin-bottom:12px;
+    font-size:20px;
+    color:#4ecbff;
+}
+
+/* glowing corner */
+.card::before{
+    content:"";
+    position:absolute;
+    top:-2px; left:-2px;
+    width:40px; height:40px;
+    background:linear-gradient(135deg, #00aaff, transparent);
+    border-top-left-radius:14px;
+    z-index:0;
+}
+
+/* hidden details */
+.details{
+    display:none;
+    font-size:15px;
+    line-height:1.6;
+    margin-top:12px;
+    color:#dff4ff;
+}
+
+/* toggle animation */
+.card.active .details{
+    display:block;
+    animation:fade 0.4s ease-in-out;
+}
+@keyframes fade{
+    from{opacity:0; transform:translateY(6px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* ========== FOOTER ========== */
+footer{
+    text-align:center;
+    padding:20px;
+    background:#0f1629;
+    margin-top:60px;
+    border-top:1px solid #0d6efd;
+    font-size:14px;
+    color:#b5daff;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Crime Prediction – Safety Measures</h1>
+</header>
+
+<section>
+    <h2 class="section-title">Stay Safe, Stay Aware</h2>
+    <p class="section-sub">
+        Crime prediction helps identify high-risk zones and times.  
+        These safety measures empower you to protect yourself and your community.
+    </p>
+
+    <div class="grid">
+
+        <!-- Card 1 -->
+        <div class="card" onclick="toggleCard(this)">
+            <h3>🏠 Home & Property Safety</h3>
+            <div class="details">
+                • Install motion lights and CCTV cameras.<br>
+                • Lock windows and doors even during daytime.<br>
+                • Avoid telling strangers when you're away.<br>
+                • Keep valuables out of visible areas.<br>
+                • Use AI-based home monitoring apps.
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card" onclick="toggleCard(this)">
+            <h3>🚶 Personal Safety</h3>
+            <div class="details">
+                • Stay alert in isolated areas.<br>
+                • Avoid earbuds at full volume while walking.<br>
+                • Carry a whistle or an SOS alert device.<br>
+                • Inform someone when traveling alone.<br>
+                • Use trusted public or shared transport.
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card" onclick="toggleCard(this)">
+            <h3>📱 Digital Protection</h3>
+            <div class="details">
+                • Use strong, unique passwords.<br>
+                • Beware of fraudulent websites and links.<br>
+                • Enable two-factor authentication everywhere.<br>
+                • Avoid sharing personal location openly.<br>
+                • Keep mobile security apps updated.
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card" onclick="toggleCard(this)">
+            <h3>🚗 Travel & Navigation Safety</h3>
+            <div class="details">
+                • Check predicted crime hotspots on the map.<br>
+                • Use well-lit routes during night travel.<br>
+                • Verify taxi/ride driver credentials.<br>
+                • Keep emergency contacts accessible.<br>
+                • Avoid displaying expensive items in public.
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card" onclick="toggleCard(this)">
+            <h3>⚡ AI-Assisted Crime Prevention</h3>
+            <div class="details">
+                • Use your city’s crime prediction alerts.<br>
+                • Review daily risk ratings for your area.<br>
+                • Report suspicious activity via apps.<br>
+                • Follow real-time safety notifications.<br>
+                • Use smart wearables for emergency alerts.
+            </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="card" onclick="toggleCard(this)">
+            <h3>🚨 Emergency Preparedness</h3>
+            <div class="details">
+                • Memorize key emergency numbers.<br>
+                • Learn self-defense basics.<br>
+                • Keep a safety kit in home & car.<br>
+                • Stay calm and follow emergency protocols.<br>
+                • Know the nearest police & medical services.
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    © 2025 Crime Prediction | Safety Measures Guide
+</footer>
+
+<script>
+/* Toggle card content */
+function toggleCard(card){
+    card.classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
